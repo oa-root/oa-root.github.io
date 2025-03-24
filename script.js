@@ -12,10 +12,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(17, 24, 39, 0.98)';
-        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.3)';
+        navbar.style.background = 'rgba(0, 0, 0, 0.98)';
+        navbar.style.boxShadow = '0 2px 10px rgba(0, 255, 157, 0.1)';
     } else {
-        navbar.style.background = 'rgba(17, 24, 39, 0.95)';
+        navbar.style.background = 'rgba(0, 0, 0, 0.95)';
         navbar.style.boxShadow = 'none';
     }
 });
@@ -91,4 +91,50 @@ if (heroText) {
     }
     
     typeWriter();
-} 
+}
+
+// Add parallax effect to hero section
+window.addEventListener('scroll', () => {
+    const hero = document.querySelector('.hero');
+    const scrolled = window.pageYOffset;
+    hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
+});
+
+// Add subtle glow effect to skill categories
+document.querySelectorAll('.skill-category').forEach(category => {
+    category.addEventListener('mouseenter', () => {
+        category.style.boxShadow = '0 0 20px rgba(0, 255, 157, 0.2)';
+    });
+    
+    category.addEventListener('mouseleave', () => {
+        category.style.boxShadow = '0 5px 15px rgba(0, 255, 157, 0.1)';
+    });
+});
+
+// Add cursor trail effect
+const cursor = document.createElement('div');
+cursor.className = 'cursor-trail';
+document.body.appendChild(cursor);
+
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+
+// Add cursor trail styles
+const cursorStyle = document.createElement('style');
+cursorStyle.textContent = `
+    .cursor-trail {
+        width: 20px;
+        height: 20px;
+        background: rgba(0, 255, 157, 0.1);
+        border: 2px solid rgba(0, 255, 157, 0.2);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: width 0.2s, height 0.2s;
+    }
+`;
+document.head.appendChild(cursorStyle); 
