@@ -82,6 +82,7 @@ body {
     font-weight: 500;
     transition: var(--transition);
     position: relative;
+    padding: 0.5rem 0;
 }
 
 .nav-links a::after {
@@ -89,10 +90,11 @@ body {
     position: absolute;
     width: 0;
     height: 2px;
-    bottom: -5px;
+    bottom: 0;
     left: 0;
     background-color: var(--primary-color);
     transition: width 0.3s ease;
+    transform-origin: left;
 }
 
 .nav-links a:hover::after {
@@ -138,6 +140,24 @@ body {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 1s ease forwards;
+    position: relative;
+}
+
+.hero h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    animation: lineGrow 1s ease forwards 1s;
+}
+
+@keyframes lineGrow {
+    to {
+        width: 100%;
+    }
 }
 
 .hero p {
@@ -190,6 +210,7 @@ body {
     transition: var(--transition);
     position: relative;
     overflow: hidden;
+    transform-origin: center;
 }
 
 .btn::before {
@@ -207,6 +228,11 @@ body {
     left: 100%;
 }
 
+.btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 255, 157, 0.2);
+}
+
 .btn.primary {
     background: var(--primary-color);
     color: var(--background);
@@ -215,11 +241,6 @@ body {
 .btn.secondary {
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 255, 157, 0.2);
 }
 
 /* About Section */
@@ -262,16 +283,39 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: var(--transition);
     border: 1px solid var(--border-color);
+    animation: statAppear 0.6s ease-out forwards;
+    opacity: 0;
 }
 
+@keyframes statAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stat-item:nth-child(1) { animation-delay: 0.2s; }
+.stat-item:nth-child(2) { animation-delay: 0.4s; }
+.stat-item:nth-child(3) { animation-delay: 0.6s; }
+
 .stat-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 5px 20px rgba(0, 255, 157, 0.2);
 }
 
 .stat-item i {
     font-size: 2.5rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
+    transition: var(--transition);
+}
+
+.stat-item:hover i {
+    transform: scale(1.1) rotate(5deg);
 }
 
 /* Projects Section */
@@ -301,7 +345,25 @@ body {
     transition: var(--transition);
     border: 1px solid var(--border-color);
     position: relative;
+    transform-origin: center;
+    animation: cardAppear 0.6s ease-out forwards;
+    opacity: 0;
 }
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.project-card:nth-child(1) { animation-delay: 0.2s; }
+.project-card:nth-child(2) { animation-delay: 0.4s; }
+.project-card:nth-child(3) { animation-delay: 0.6s; }
 
 .project-card::before {
     content: '';
@@ -320,7 +382,7 @@ body {
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.02);
     box-shadow: 0 5px 20px rgba(0, 255, 157, 0.2);
 }
 
@@ -371,10 +433,27 @@ body {
     box-shadow: 0 5px 15px rgba(0, 255, 157, 0.1);
     border: 1px solid var(--border-color);
     transition: var(--transition);
+    animation: skillAppear 0.6s ease-out forwards;
+    opacity: 0;
 }
 
+@keyframes skillAppear {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.skill-category:nth-child(1) { animation-delay: 0.2s; }
+.skill-category:nth-child(2) { animation-delay: 0.4s; }
+.skill-category:nth-child(3) { animation-delay: 0.6s; }
+
 .skill-category:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.02);
     box-shadow: 0 5px 20px rgba(0, 255, 157, 0.2);
 }
 
@@ -391,6 +470,7 @@ body {
     margin-bottom: 0.5rem;
     padding-left: 1.5rem;
     position: relative;
+    transition: var(--transition);
 }
 
 .skill-category li::before {
@@ -398,6 +478,11 @@ body {
     color: var(--primary-color);
     position: absolute;
     left: 0;
+}
+
+.skill-category li:hover {
+    transform: translateX(5px);
+    color: var(--primary-color);
 }
 
 /* Contact Section */
